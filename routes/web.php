@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Public routes
+Route::get('/', 'HomeController@index')->name('home');
+
+//User Routes
+Route::get('/home', 'User\HomeController@index')->name('user.home');
+
+//Admin routes
+
+Route::prefix('admin')->group(function(){
+    Route::get('/','Admin\AdminController@index')->name('admin.dashboard');
+    Route::get('/login','Auth\AdminLoginController@showloginform')->name('admin.login');
+    Route::post('/login','Auth\AdminLoginController@login')->name('admin.login.submit');
 });
+Auth::routes();
