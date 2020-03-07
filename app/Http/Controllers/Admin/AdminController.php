@@ -16,4 +16,16 @@ class AdminController extends Controller
     {
         return view('admin.home');
     }
+
+    protected function broker()
+    {
+        return Password::broker('admins');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
+
 }
